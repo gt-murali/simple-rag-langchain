@@ -1,0 +1,27 @@
+22-Nov-2025:
+Running Ollama on the local requires docker to be installed on local system.
+Installing Ollama models required for the class:
+1. Download and install Ollama for Windows. Then execute the following commands:
+    ollama pull embeddinggemma:300m
+    ollama run deepseek-r1
+    ollama run gemma3:1b
+    ollama run qwen2.5
+    ollama run llama3.2:1b
+    ollama pull nomic-embed-text
+2. Ollama models run in-memory. Ensure you download and run only lightweight models which don't occupy more then 25-40% of your memory max.
+3. At the end of the class, run the following command to stop all Ollama models running, so that memory is freed up.
+ollama ps |
+  Select-Object -Skip 1 |
+  ForEach-Object {
+    $name = ($_ -split '\s+')[0]
+    if ($name) {
+      Write-Host "Stopping $name..."
+      ollama stop $name
+    }
+  }
+
+
+
+
+
+
