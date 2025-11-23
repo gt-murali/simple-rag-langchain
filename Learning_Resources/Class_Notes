@@ -1,3 +1,8 @@
+https://huggingface.co/spaces/mteb/leaderboard - This is a leader board that compares performances of open source LLMs.
+tavily.com is a free Web access layer for Agents.
+
+
+
 22-Nov-2025:
 Running Ollama on the local requires docker to be installed on local system.
 Installing Ollama models required for the class:
@@ -19,6 +24,59 @@ ollama ps |
       ollama stop $name
     }
   }
+
+===========================================================================================
+
+23-Nov-2025:
+Important terms:
+Context Window aka. Attention Span
+Sparse Vectors and Dense Vectors
+
+To explore:
+0. https://ai.google.dev/gemini-api/docs
+1. OpenAI's tiktoken project
+2. Chonkie
+
+Best Vector Databases for Production purposes, as specified by instructor, and also the same are listed on Google AI Studio website - https://ai.google.dev/gemini-api/docs/embeddings
+
+The following tutorials show how to use other third party vector databases with Gemini Embedding.
+ChromaDB
+QDrant
+Weaviate
+Pinecone
+
+
+
+BEST Practice - Chunk size - keep it low, max 1500, never more unless very very justified. Chunk Size is a hyper parameter and needs to be tried and tested for the particular use case before fixing it. Similarity Search efficiency reduces significantly with larger chunks.
+"\n\n" is the paragraph delimiter.
+
+For text splitting, "RecursiveCharacterTextSplitter" is used 90% of the time in Production. "CharacterTextSplitter" is not ideal to be used.
+
+-----
+
+Embedding Models usually have number of dimensions, like 3072 etc. Few great models have multi-dimension support like Gemini models, qwen etc. We need to choose the number of dimensions while working with Embedding Models.
+
+https://huggingface.co/spaces/mteb/leaderboard - This is a leader board that compares performances of open source LLMs.
+
+-----
+There is an in-memory vector store provided by LangChain that we can use readily without any set-up, for quick demo purposes etc., but not for Production purposes.
+from langchain_core.vectorstores import InMemoryVectorStore
+-----
+
+Types of Retrievers - Cosine Similarity, MMR, and Custom Retrievers.
+Cosine Similarity provides "relevant" retrievals, where as MMR provides "diverse" to "relevant" retrieval based on value set for lambda_mult parameter.
+MMR with lambda_mult=1 acts like cosine similarity. 
+
+------
+
+
+
+
+
+
+
+
+
 
 
 
